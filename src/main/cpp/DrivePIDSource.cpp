@@ -5,15 +5,23 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#pragma once
-#include "ctre/Phoenix.h"
-#include <WPILib.h>
+#include "DrivePIDSource.h"
 
-class ArmPIDOutput : public frc::PIDOutput {
-	TalonSRX* m_pTalon0;
-	TalonSRX* m_pTalon1;
- public:
-  ArmPIDOutput(TalonSRX* pTalon0, TalonSRX* pTalon1);
-	virtual ~ArmPIDOutput();
-	virtual void PIDWrite(double value);
-};
+DrivePIDSource::DrivePIDSource(rev::CANSparkMax* pSpark) : m_pSpark(pSpark) 
+{
+
+}
+
+DrivePIDSource::~DrivePIDSource()
+{
+}
+
+double DrivePIDSource::PIDGet()
+{
+	return m_pSpark->GetEncoder().GetPosition() / 10.42 * (3.1425927 * 6);
+}
+
+void DrivePIDSource::Reset(double val)
+{
+	m_pSpark->GetEncoder().SetPosition(val);
+}

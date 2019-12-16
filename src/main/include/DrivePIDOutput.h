@@ -6,14 +6,17 @@
 /*----------------------------------------------------------------------------*/
 
 #pragma once
-#include "ctre/Phoenix.h"
-#include <WPILib.h>
 
-class ArmPIDOutput : public frc::PIDOutput {
-	TalonSRX* m_pTalon0;
-	TalonSRX* m_pTalon1;
+#include "rev/CANSparkMax.h"
+#include <frc/WPILib.h>
+
+class DrivePIDOutput : public frc::PIDOutput {
+	rev::CANSparkMax* m_pSpark0;
+	rev::CANSparkMax* m_pSpark1;
+  double ff = 0;
  public:
-  ArmPIDOutput(TalonSRX* pTalon0, TalonSRX* pTalon1);
-	virtual ~ArmPIDOutput();
+  DrivePIDOutput(rev::CANSparkMax* pSpark0, rev::CANSparkMax* pSpark1);
+	virtual ~DrivePIDOutput();
+	void FFWrite(double ff);
 	virtual void PIDWrite(double value);
 };

@@ -5,31 +5,30 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/DriveCommand.h"
+#include "commands/CubeIntakeAutoCommand.h"
 #include "CommandBase.h"
 
-DriveCommand::DriveCommand()
-{
-  Requires(CommandBase::drivesubsystem.get());
+CubeIntakeAutoCommand::CubeIntakeAutoCommand(double speed) : speed(speed) {
+  // Use Requires() here to declare subsystem dependencies
+  // eg. Requires(Robot::chassis.get());
+  Requires(CommandBase::cubesubsystem.get());
 }
 
 // Called just before this Command runs the first time
-void DriveCommand::Initialize() {}
-
-// Called repeatedly when this Command is scheduled to run
-void DriveCommand::Execute()
+void CubeIntakeAutoCommand::Initialize()
 {
-  CommandBase::drivesubsystem->GetLeftPID()->SetEnabled(false);
-  CommandBase::drivesubsystem->GetRightPID()->SetEnabled(false);
-  CommandBase::drivesubsystem->Drive(CommandBase::oi->GetAxis(0, Axis::LeftUpDown), CommandBase::oi->GetAxis(0, Axis::RightLeftRight));
+  CommandBase::cubesubsystem->SetCubeSpeed(speed);
 }
 
+// Called repeatedly when this Command is scheduled to run
+void CubeIntakeAutoCommand::Execute() {}
+
 // Make this return true when this Command no longer needs to run execute()
-bool DriveCommand::IsFinished() { return false; }
+bool CubeIntakeAutoCommand::IsFinished() { return true; }
 
 // Called once after isFinished returns true
-void DriveCommand::End() {}
+void CubeIntakeAutoCommand::End() {}
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void DriveCommand::Interrupted() {}
+void CubeIntakeAutoCommand::Interrupted() {}

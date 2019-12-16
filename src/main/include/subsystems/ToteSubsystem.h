@@ -30,7 +30,7 @@ class ToteSubsystem : public frc::Subsystem {
   frc::DigitalInput* m_Top;
   frc::DigitalInput* m_Bottom;
 
-  const double P = 0.43, I = 0, D = 0.06;
+  const double P = 0.47, I = 0, D = 0.06;
  public:
   ToteSubsystem();
   void SetArmSpeed(double speed);

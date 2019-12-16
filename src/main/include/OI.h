@@ -1,6 +1,9 @@
 #pragma once
 
 #include <frc/WPILib.h>
+#include <frc/smartdashboard/SmartDashboard.h>
+#include <networktables/NetworkTable.h>
+#include <networktables/NetworkTableInstance.h>
 
 enum Axis
 {
@@ -29,7 +32,7 @@ enum Buttons
 class OI
 {
 public:
-
+	bool stop_on_grab = false;
 	frc::Joystick* pDriveStick;
 	frc::Joystick* pOperatorStick;
 	frc::JoystickButton* DriverAButton;
@@ -58,7 +61,6 @@ public:
 	double GetAxis(int controller, Axis axis);
 	bool GetButton(int controller, Buttons button);
 	int GetDPad(int controller);
-  
-  	int GetDataCenter();
+  	double GetDataCenter();
 	OI();
 };

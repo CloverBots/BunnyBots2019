@@ -5,15 +5,26 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#pragma once
-#include "ctre/Phoenix.h"
-#include <WPILib.h>
+#include "DrivePIDOutput.h"
 
-class ArmPIDOutput : public frc::PIDOutput {
-	TalonSRX* m_pTalon0;
-	TalonSRX* m_pTalon1;
- public:
-  ArmPIDOutput(TalonSRX* pTalon0, TalonSRX* pTalon1);
-	virtual ~ArmPIDOutput();
-	virtual void PIDWrite(double value);
-};
+DrivePIDOutput::DrivePIDOutput(rev::CANSparkMax* pSpark0, rev::CANSparkMax* pSpark1)
+			: m_pSpark0(pSpark0), m_pSpark1(pSpark1)
+{
+
+}
+
+DrivePIDOutput::~DrivePIDOutput() {
+
+}
+
+void DrivePIDOutput::FFWrite(double ff)
+{
+    this->ff = ff;
+}
+
+void DrivePIDOutput::PIDWrite(double value)
+{
+    value += ff;
+	m_pSpark0->Set(value);
+	m_pSpark1->Set(value);
+}

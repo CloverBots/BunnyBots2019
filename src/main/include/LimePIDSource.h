@@ -6,14 +6,16 @@
 /*----------------------------------------------------------------------------*/
 
 #pragma once
-#include "ctre/Phoenix.h"
-#include <WPILib.h>
 
-class ArmPIDOutput : public frc::PIDOutput {
-	TalonSRX* m_pTalon0;
-	TalonSRX* m_pTalon1;
+#include "frc/WPILib.h"
+
+class LimePIDSource : public frc::PIDSource
+{
+  double input;
+ private:
  public:
-  ArmPIDOutput(TalonSRX* pTalon0, TalonSRX* pTalon1);
-	virtual ~ArmPIDOutput();
-	virtual void PIDWrite(double value);
+  LimePIDSource();
+  void SetInput(double input);
+	virtual ~LimePIDSource();
+	virtual double PIDGet();
 };

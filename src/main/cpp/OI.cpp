@@ -195,3 +195,13 @@ int OI::GetDPad(int controller)
 		return pOperatorStick->GetPOV(0);
 	}
 }
+
+double OI::GetDataCenter()
+{
+	std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
+	double tx = table->GetNumber("tx",0.0);
+	double ty = table->GetNumber("ty",0.0);
+	double ta = table->GetNumber("ta",0.0);
+	double tv = table->GetNumber("tv",0.0);
+	return tx;
+}

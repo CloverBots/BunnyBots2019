@@ -5,15 +5,23 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#pragma once
-#include "ctre/Phoenix.h"
-#include <WPILib.h>
+#include "LimePIDOutput.h"
 
-class ArmPIDOutput : public frc::PIDOutput {
-	TalonSRX* m_pTalon0;
-	TalonSRX* m_pTalon1;
- public:
-  ArmPIDOutput(TalonSRX* pTalon0, TalonSRX* pTalon1);
-	virtual ~ArmPIDOutput();
-	virtual void PIDWrite(double value);
-};
+LimePIDOutput::LimePIDOutput()
+{
+
+}
+
+LimePIDOutput::~LimePIDOutput() {
+
+}
+
+double LimePIDOutput::GetOutput()
+{
+    return output;
+}
+
+void LimePIDOutput::PIDWrite(double value)
+{
+    output = value;
+}
