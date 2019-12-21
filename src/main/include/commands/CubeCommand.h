@@ -10,6 +10,10 @@
 #include <frc/commands/Command.h>
 
 class CubeCommand : public frc::Command {
+  double janktimer = 0;
+  bool intake_toggle = false;
+  bool intake_position = false;
+  bool enable_toggle = false;
  public:
   CubeCommand();
   void Initialize() override;

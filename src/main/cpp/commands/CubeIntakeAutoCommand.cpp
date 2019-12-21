@@ -17,14 +17,25 @@ CubeIntakeAutoCommand::CubeIntakeAutoCommand(double speed) : speed(speed) {
 // Called just before this Command runs the first time
 void CubeIntakeAutoCommand::Initialize()
 {
-  CommandBase::cubesubsystem->SetCubeSpeed(speed);
+  CommandBase::cubesubsystem->SetLatch(frc::DoubleSolenoid::Value::kForward);
 }
 
 // Called repeatedly when this Command is scheduled to run
-void CubeIntakeAutoCommand::Execute() {}
+void CubeIntakeAutoCommand::Execute() 
+{
+  if (cubejanktimer <= 65)
+  {
+    cubejanktimer++;
+    CommandBase::cubesubsystem->SetCubeSpeed(speed);
+  }
+  else
+  {
+    CommandBase::cubesubsystem->SetCubeSpeed(0);
+  }
+}
 
 // Make this return true when this Command no longer needs to run execute()
-bool CubeIntakeAutoCommand::IsFinished() { return true; }
+bool CubeIntakeAutoCommand::IsFinished() { return false; }
 
 // Called once after isFinished returns true
 void CubeIntakeAutoCommand::End() {}

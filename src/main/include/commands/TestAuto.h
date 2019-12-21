@@ -11,7 +11,6 @@
 #include "CubeIntakeAutoCommand.h"
 #include "DriveDistanceCommand.h"
 #include "ArmCommand.h"
-#include "ToteAutoCommand.h"
 
 class TestAuto : public frc::CommandGroup {
  public:

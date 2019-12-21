@@ -5,24 +5,12 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#pragma once
+#include "commands/NoBunnyAuto.h"
 
-#include <frc/commands/Command.h>
-
-class ArmCommand : public frc::Command {
-  bool lowered;
-  int toggle = 0;
-  bool go45 = false;
-  bool finished = false;
-  int janktimer = 0;
-  bool grab;
-  bool run_grab;
-  bool spec_finished = false;
- public:
-  ArmCommand(bool lowered, bool go45, bool run_grab, bool grab);
-  void Initialize() override;
-  void Execute() override;
-  bool IsFinished() override;
-  void End() override;
-  void Interrupted() override;
-};
+NoBunnyAuto::NoBunnyAuto()
+{
+  AddParallel(new ArmCommand(true, false, true, true));
+  AddSequential(new DriveDistanceCommand(267, true, true, .55, false, 0));
+  AddSequential(new DriveDistanceCommand(-60, false, false, .3, true, 3));
+  AddSequential(new ArmCommand(false, false, true, true));
+}

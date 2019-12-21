@@ -12,6 +12,9 @@
 class ToteCommand : public frc::Command
 {
  int toggle = 0;
+ bool armtoggle = false;
+ bool armlatch = false;
+ int superjanktimer = 0;
  public:
   ToteCommand();
   void Initialize() override;

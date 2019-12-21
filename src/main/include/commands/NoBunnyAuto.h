@@ -7,22 +7,12 @@
 
 #pragma once
 
-#include <frc/commands/Command.h>
+#include <frc/commands/CommandGroup.h>
+#include "CubeIntakeAutoCommand.h"
+#include "DriveDistanceCommand.h"
+#include "ArmCommand.h"
 
-class ArmCommand : public frc::Command {
-  bool lowered;
-  int toggle = 0;
-  bool go45 = false;
-  bool finished = false;
-  int janktimer = 0;
-  bool grab;
-  bool run_grab;
-  bool spec_finished = false;
+class NoBunnyAuto : public frc::CommandGroup {
  public:
-  ArmCommand(bool lowered, bool go45, bool run_grab, bool grab);
-  void Initialize() override;
-  void Execute() override;
-  bool IsFinished() override;
-  void End() override;
-  void Interrupted() override;
+  NoBunnyAuto();
 };

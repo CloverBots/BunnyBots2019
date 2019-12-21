@@ -15,6 +15,7 @@
 #include "commands/DriveCommand.h"
 #include "commands/DriveDistanceCommand.h"
 #include "commands/TestAuto.h"
+#include "commands/NoBunnyAuto.h"
 
 class Robot : public frc::TimedRobot {
  public:
@@ -34,6 +35,7 @@ class Robot : public frc::TimedRobot {
 
   frc::Compressor* c = new frc::Compressor(0);
   frc::Command* m_autonomousCommand = nullptr;
-  TestAuto* testauto;
+  TestAuto* bunnyauto;
+  NoBunnyAuto* nobunnyauto;
   frc::SendableChooser<frc::Command*> m_chooser;
 };

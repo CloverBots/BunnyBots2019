@@ -18,12 +18,12 @@ class CubeSubsystem : public frc::Subsystem {
   // for methods that implement subsystem capabilities
   TalonSRX* m_Cube_Motor0;
   TalonSRX* m_Cube_Motor1;
-  //frc::DoubleSolenoid* m_Flap_Latch;
-  //frc::DoubleSolenoid* m_Bed;
+  frc::DoubleSolenoid* m_Flap_Latch;
+  frc::DoubleSolenoid* m_Bed;
  public:
   CubeSubsystem();
   void SetCubeSpeed(double speed);
-  //void SetLatch(frc::DoubleSolenoid::Value value);
-  //void SetBed(frc::DoubleSolenoid::Value value);
+  void SetLatch(frc::DoubleSolenoid::Value value);
+  void SetBed(frc::DoubleSolenoid::Value value);
   void InitDefaultCommand() override;
 };

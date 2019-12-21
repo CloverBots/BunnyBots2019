@@ -21,7 +21,7 @@ void DriveCommand::Execute()
 {
   CommandBase::drivesubsystem->GetLeftPID()->SetEnabled(false);
   CommandBase::drivesubsystem->GetRightPID()->SetEnabled(false);
-  CommandBase::drivesubsystem->Drive(CommandBase::oi->GetAxis(0, Axis::LeftUpDown), CommandBase::oi->GetAxis(0, Axis::RightLeftRight));
+  CommandBase::drivesubsystem->Drive(CommandBase::oi->GetAxis(0, Axis::LeftUpDown), CommandBase::oi->GetAxis(0, Axis::RightLeftRight), CommandBase::oi->GetAxis(0, Axis::RightTrigger) > .3);
 }
 
 // Make this return true when this Command no longer needs to run execute()

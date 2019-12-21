@@ -10,14 +10,15 @@
 #include <frc/commands/Scheduler.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 #include "CommandBase.h"
-
+#include <iostream>
 
 void Robot::RobotInit()
 {
-    CommandBase::Init();
-    testauto = new TestAuto();
-//  m_chooser.SetDefaultOption("Default Auto", &m_defaultAuto);
-//  m_chooser.AddOption("My Auto", &m_myAuto);
+  CommandBase::Init();
+  bunnyauto = new TestAuto();
+  nobunnyauto = new NoBunnyAuto();
+  m_chooser.SetDefaultOption("With Bunnys", bunnyauto);
+  m_chooser.AddOption("NO Bunnys", nobunnyauto);
   frc::SmartDashboard::PutData("Auto Modes", &m_chooser);
 }
 
@@ -41,7 +42,10 @@ void Robot::DisabledInit()
   c->Stop();
 }
 
-void Robot::DisabledPeriodic() { frc::Scheduler::GetInstance()->Run(); }
+void Robot::DisabledPeriodic()
+{   
+  frc::Scheduler::GetInstance()->Run();
+}
 
 /**
  * This autonomous (along with the chooser code above) shows how to select
@@ -66,8 +70,8 @@ void Robot::AutonomousInit() {
 
   m_autonomousCommand = m_chooser.GetSelected();
 
-  if (testauto != nullptr) {
-    testauto->Start();
+  if (m_autonomousCommand != nullptr) {
+    m_autonomousCommand->Start();
   }
 }
 

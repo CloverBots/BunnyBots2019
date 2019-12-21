@@ -13,8 +13,12 @@ class DriveDistanceCommand : public frc::Command {
   double distance;
   bool stop;
   bool use_limelight;
+  double speed_cap;
+  bool usetimeout;
+  int timeout;
+  bool stopdrive = false;
  public:
-  DriveDistanceCommand(double distance, bool stop, bool use_limelight);
+  DriveDistanceCommand(double distance, bool stop, bool use_limelight, double speed_cap, bool usetimeout, int timeout);
   void Initialize() override;
   void Execute() override;
   bool IsFinished() override;

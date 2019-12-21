@@ -26,13 +26,11 @@ void DriveSubsystem::InitDefaultCommand()
   m_Left_PID = new frc::PIDController(P, I, D, m_Left_Source, m_Left_Output);
   m_Right_PID = new frc::PIDController(P, I, D, m_Right_Source, m_Right_Output);
   m_Lime_PID = new frc::PIDController(lP, lI, lD, m_Lime_Source, m_Lime_Output);
-  m_Left_PID->SetOutputRange(-.3 , .3);
-  m_Right_PID->SetOutputRange(-.3 , .3);
   m_Left_PID->SetAbsoluteTolerance(.25);
   m_Right_PID->SetAbsoluteTolerance(.25);
 }
 
-void DriveSubsystem::Drive(double speed, double turn)
+void DriveSubsystem::Drive(double speed, double turn, bool speed_override)
 {
   std::cout << -m_leftLeadMotor.GetEncoder().GetPosition() << " : " << m_rightLeadMotor.GetEncoder().GetPosition() << std::endl;
   /*
@@ -46,9 +44,20 @@ void DriveSubsystem::Drive(double speed, double turn)
     turn = 0;
   }
   */
-  turn = turn / 1.5;
-  double left_speed = sin(3.1415927 / 4 * (-speed + turn));
-  double right_speed = sin(3.1415927 / 4 * (speed + turn));
+  turn = turn / 2;
+  double left_speed;
+  double right_speed;
+  if(!speed_override)
+  {
+    left_speed = sin(3.1415927 / 4 * (-speed + turn));
+    right_speed = sin(3.1415927 / 4 * (speed + turn));
+  }
+  else
+  {
+    left_speed = -speed + sin(3.1415927 / 4 * (turn));
+    right_speed = speed + sin(3.1415927 / 4 * (turn));    
+  }
+  
   m_leftLeadMotor.Set(left_speed);
   m_rightLeadMotor.Set(right_speed);
   m_leftFollowMotor.Set(left_speed);

@@ -32,6 +32,7 @@ enum Buttons
 class OI
 {
 public:
+	bool enable_vision = false;
 	bool stop_on_grab = false;
 	frc::Joystick* pDriveStick;
 	frc::Joystick* pOperatorStick;

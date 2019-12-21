@@ -11,6 +11,7 @@
 
 class CubeIntakeAutoCommand : public frc::Command {
   double speed;
+  double cubejanktimer = 0;
  public:
   CubeIntakeAutoCommand(double speed);
   void Initialize() override;

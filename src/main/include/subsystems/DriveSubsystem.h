@@ -38,7 +38,7 @@ class DriveSubsystem : public frc::Subsystem {
   const double lP = 0.006, lI = 0, lD = 0.0;
  public:
   DriveSubsystem();
-  void Drive(double speed, double turn);
+  void Drive(double speed, double turn, bool speed_override);
   frc::PIDController* GetLeftPID() { return m_Left_PID; }
   frc::PIDController* GetRightPID() { return m_Right_PID; }
   frc::PIDController* GetLimePID() { return m_Lime_PID; }

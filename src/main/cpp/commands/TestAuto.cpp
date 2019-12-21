@@ -7,16 +7,13 @@
 
 #include "commands/TestAuto.h"
 
-TestAuto::TestAuto() {
+TestAuto::TestAuto()
+{  
+  AddParallel(new ArmCommand(true, false, true, true));
+  AddParallel(new CubeIntakeAutoCommand(.55));
+  AddSequential(new DriveDistanceCommand(267, true, true, .55, false, 0));
+  AddSequential(new ArmCommand(false, true, true, true));
+  AddSequential(new DriveDistanceCommand(-60, false, false, .3, false, 0));
   
-  AddParallel(new ArmCommand(true));
-  AddSequential(new CubeIntakeAutoCommand(.4));
-  AddSequential(new DriveDistanceCommand(3.1415927 * 1.5, false, false));
-  AddSequential(new CubeIntakeAutoCommand(0));
-  AddParallel(new ToteAutoCommand(true));
-  AddSequential(new DriveDistanceCommand(279 - (3.1415927 * 1.5), true, true));
-  AddSequential(new ArmCommand(false));
-  AddSequential(new DriveDistanceCommand(-60, false, false));
-  
-  //AddSequential(new DriveDistanceCommand(0, false, true));
+  //AddSequential(new DriveDistanceCommand(0, false, true, 1));
 }
